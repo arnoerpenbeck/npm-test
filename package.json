@@ -1,6 +1,6 @@
 {
   "name": "@fulfillmenttools/npm-test",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NPM Test Package",
   "main": "index.js",
   "author": "OC fulfillment GmbH (https://fulfillmenttools.com/)",
@@ -8,7 +8,8 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon --exec ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "release-it"
   },
   "keywords": [
     "npm",
@@ -29,6 +30,7 @@
     "@tsconfig/node16": "16.1.0",
     "@types/node": "20.3.2",
     "nodemon": "2.0.22",
+    "release-it": "15.11.0",
     "ts-node": "10.9.1"
   }
 }
