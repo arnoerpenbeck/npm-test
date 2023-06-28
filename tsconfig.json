@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "exclude": ["node_modules", "tmp"],
+  "compilerOptions": {
+    "lib": ["es2021"],
+    "target": "es2021",
+    "resolveJsonModule": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "inlineSourceMap": true
+  }
+}
