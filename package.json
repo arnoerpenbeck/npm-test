@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "NPM Test Package",
   "main": "index.js",
-  "private": true,
   "author": "OC fulfillment GmbH (https://fulfillmenttools.com/)",
   "license": "MIT",
   "scripts": {
