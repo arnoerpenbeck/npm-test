@@ -1,5 +1,5 @@
 {
-  "name": "npm-test",
+  "name": "@fulfillmenttools/npm-test",
   "version": "0.0.1",
   "description": "NPM Test Package",
   "main": "index.js",
@@ -15,6 +15,14 @@
     "npm",
     "test"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arnoerpenbeck/npm-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arnoerpenbeck/npm-test/issues"
+  },
+  "homepage": "https://fulfillmenttools.com/",
   "dependencies": {
     "typescript": "5.1.5"
   },
