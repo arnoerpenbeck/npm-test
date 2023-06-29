@@ -39,13 +39,6 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-      - name: Create release branch
-        if: false()
-        id: crb
-        run: |
-          RELEASE_BRANCH="release/$(date -u +"%Y-%m-%d_%H-%m-%S")"
-          echo "release-branch=${RELEASE_BRANCH}" >> $GITHUB_OUTPUT
-
       - name: Show git info
         run: |
           echo "SHA=$(git rev-parse --short HEAD)"
@@ -69,7 +62,6 @@ jobs:
           BETA_ARG: ${{ github.event.inputs.beta == 'true' && '--preRelease=beta' || '' }}
           DRY_ARG: ${{ github.event.inputs.dry == 'true' && '--dry-run' || '' }}
           GIT_ARG: --no-git
-          OLD_GIT_ARG: --git.pushArgs=--follow-tags --git.pushArgs="--set-upstream origin ${{ steps.crb.outputs.release-branch }}"
 
       - name: Determine new version
         id: version
