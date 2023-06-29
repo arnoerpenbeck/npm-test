@@ -6,14 +6,18 @@ on:
       - closed
     branches:
       - 'main'
+  workflow_dispatch:
 
 jobs:
   publish:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.head.label == 'ocff:release')
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - run: |
+          echo "Label=${{ github.event.pull_request.head.label }}"
 
       - name: Set up node
         uses: actions/setup-node@v3
