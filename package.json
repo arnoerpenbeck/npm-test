@@ -10,7 +10,8 @@
     "start": "nodemon --exec ts-node src/index.ts",
     "test": "echo \"TODO: no test specified\" && exit 0",
     "lint": "echo \"TODO: no lint config specified\" && exit 0",
-    "release": "release-it"
+    "release": "release-it",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "keywords": [
     "npm",
@@ -23,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/arnoerpenbeck/npm-test/issues"
   },
-  "homepage": "https://fulfillmenttools.com/",
+  "homepage": "https://www.npmjs.com/package/@fulfillmenttools/npm-test",
   "dependencies": {
     "typescript": "5.1.5"
   },
