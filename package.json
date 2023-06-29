@@ -1,6 +1,6 @@
 {
   "name": "@fulfillmenttools/npm-test",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "NPM Test Package",
   "main": "index.js",
   "author": "OC fulfillment GmbH (https://fulfillmenttools.com/)",
