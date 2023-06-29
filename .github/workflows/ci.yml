@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Show git info
         run: |
@@ -33,3 +31,9 @@ jobs:
 
       - name: Building
         run: npm run build
+
+      - name: Linting
+        run: npm run lint
+
+      - name: Testing
+        run: npm run test
