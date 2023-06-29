@@ -68,13 +68,17 @@ jobs:
           TYPE_ARG: ${{ fromJSON('{"auto":"", "patch":"--patch", "minor":"--minor", "major":"--major"}')[github.event.inputs.type] }}
           BETA_ARG: ${{ github.event.inputs.beta == 'true' && '--preRelease=beta' || '' }}
           DRY_ARG: ${{ github.event.inputs.dry == 'true' && '--dry-run' || '' }}
-          GIT_ARG: --git.pushArgs=--follow-tags --git.pushArgs="--set-upstream origin ${{ steps.crb.outputs.release-branch }}"
+          GIT_ARG: --no-git
+          OLD_GIT_ARG: --git.pushArgs=--follow-tags --git.pushArgs="--set-upstream origin ${{ steps.crb.outputs.release-branch }}"
 
       - name: Determine new version
         id: version
         run: |
           NEW_VERSION="$(cat package.json| jq -r '.version')"
           echo "release-version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+          echo "NEW_VERSION=${NEW_VERSION}"
+          echo "SHA=$(git rev-parse --short HEAD)"
+          git status
 
       - name: Create PR
         uses: peter-evans/create-pull-request@38e0b6e68b4c852a5500a94740f0e535e0d7ba54
