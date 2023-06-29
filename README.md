@@ -1,4 +1,7 @@
 # npm-test
+
+[![npm version](https://img.shields.io/npm/v/@fulfillmenttools/npm-test.svg?style=flat)](https://www.npmjs.com/package/@fulfillmenttools/npm-test) 
+
 NPM Test Project
 
 ## Introduction
