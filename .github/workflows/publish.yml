@@ -10,8 +10,10 @@ on:
 
 jobs:
   publish:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.label, 'arnoerpenbeck:release/'))
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.head.label == 'arnoerpenbeck:release')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
