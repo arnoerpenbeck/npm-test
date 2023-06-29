@@ -16,10 +16,6 @@ on:
         type: boolean
         description: Prerelease
         default: false
-      npm:
-        type: boolean
-        description: NPM release
-        default: true
       dry:
         type: boolean
         description: Dry release
@@ -32,21 +28,28 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: git config
+
+      - name: Set git config
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
+      - name: Create release branch
+        id: crb
+        run: |
+          RELEASE_BRANCH="release/$(date -u +"%Y-%m-%d_%H-%m-%S")"
+          echo "release-branch=${RELEASE_BRANCH}" >> $GITHUB_OUTPUT
+          git checkout -b "$RELEASE_BRANCH"
+
       - name: Show git info
         run: |
-          echo "SHA: $(git rev-parse --short HEAD)"
+          git status
+          git rev-parse --short HEAD
 
       - name: Set up node
         uses: actions/setup-node@v3
@@ -54,9 +57,6 @@ jobs:
           node-version-file: '.nvmrc'
           cache: "npm"
           cache-dependency-path: package-lock.json
-
-      - name: Set npm credentials
-        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
 
       - name: Install dependencies
         run: npm ci --ignore-scripts --progress=false --fund=false --fetch-retries=5
@@ -68,3 +68,18 @@ jobs:
           TYPE_ARG: ${{ fromJSON('{"auto":"", "patch":"--patch", "minor":"--minor", "major":"--major"}')[github.event.inputs.type] }}
           BETA_ARG: ${{ github.event.inputs.beta == 'true' && '--preRelease=beta' || '' }}
           DRY_ARG: ${{ github.event.inputs.dry == 'true' && '--dry-run' || '' }}
+
+      - name: Determine new version
+        id: version
+        run: |
+          NEW_VERSION=$(cat package.json| jq -r '.version')"
+          echo "release-version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@38e0b6e68b4c852a5500a94740f0e535e0d7ba54
+        if: ${{ github.event.inputs.dry == 'false' }}
+        with:
+          branch: ${{ steps.crb.outputs.release-branch }}
+          title: Prepare release ${{ steps.version.outputs.release-version }}
+          commit-message: Prepare release ${{ steps.version.outputs.release-version }}
+          labels: ocff:release
