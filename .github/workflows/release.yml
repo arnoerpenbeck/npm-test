@@ -62,7 +62,7 @@ jobs:
         run: npm ci --ignore-scripts --progress=false --fund=false --fetch-retries=5
 
       - name: Release
-        run: npm run release -- --ci --verbose $TYPE_ARG $BETA_ARG $DRY_ARG
+        run: npm run release -- --ci --verbose $TYPE_ARG $BETA_ARG $DRY_ARG $GIT_ARG
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TYPE_ARG: ${{ fromJSON('{"auto":"", "patch":"--patch", "minor":"--minor", "major":"--major"}')[github.event.inputs.type] }}
