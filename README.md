@@ -11,3 +11,7 @@ Important information!
 ## Package
 
 This software is published on [npmjs.com](https://www.npmjs.com/package/@fulfillmenttools/npm-test)
+
+## Thank You :blue_heart:
+
+Thanks or al your contributions and efforts towards improving this fantastic project!
