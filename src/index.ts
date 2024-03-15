@@ -3,4 +3,3 @@ const sayHello = (subject: string): void => {
 };
 
 sayHello('TypeScript');
-sayHello('nwilhelm was here');

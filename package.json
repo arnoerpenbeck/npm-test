@@ -9,6 +9,7 @@
     "build": "tsc",
     "start": "nodemon --exec ts-node src/index.ts",
     "test": "echo \"TODO: no test specified\" && exit 0",
+    "prettier": "prettier --write '**/*.{js,ts}'",
     "lint": "echo \"TODO: no lint config specified\" && exit 0",
     "release": "release-it",
     "version": "auto-changelog -p && git add CHANGELOG.md"
@@ -26,17 +27,23 @@
   },
   "homepage": "https://www.npmjs.com/package/@fulfillmenttools/npm-test",
   "dependencies": {
-    "typescript": "5.1.5"
+    "dotenv": "16.4.5"
   },
   "devDependencies": {
-    "@tsconfig/node16": "16.1.0",
-    "@types/node": "20.3.2",
+    "@tsconfig/recommended": "1.0.3",
+    "@types/node": "20.11.28",
     "auto-changelog": "2.4.0",
-    "nodemon": "2.0.22",
-    "release-it": "15.11.0",
-    "ts-node": "10.9.1"
+    "nodemon": "3.1.0",
+    "prettier": "2.8.8",
+    "release-it": "17.1.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.4.2"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=20.11.0 <21",
+    "npm": ">=10.2.4"
   }
 }
