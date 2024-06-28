@@ -1,5 +1,5 @@
 const sayHello = (subject: string): void => {
-  console.log('Hello ' + subject);
+  console.log('Hello, ' + subject);
 };
 
-sayHello('TypeScript');
+sayHello('TypeScript!');
