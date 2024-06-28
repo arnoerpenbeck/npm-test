@@ -14,4 +14,4 @@ This software is published on [npmjs.com](https://www.npmjs.com/package/@fulfill
 
 ## Thank You :blue_heart:
 
-Thanks or al your contributions and efforts towards improving this fantastic project!
+Thanks for al your contributions and efforts towards improving this fantastic project!
